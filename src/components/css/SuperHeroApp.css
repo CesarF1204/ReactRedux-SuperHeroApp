@@ -1,0 +1,12 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 30px;
+}
+.logo {
+    text-decoration: none;
+    color: white;
+}
+.search {
+    margin-top: 19px;
+}
