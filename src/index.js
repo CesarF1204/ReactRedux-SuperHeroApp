@@ -3,19 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 axios.defaults.baseURL = 'https://www.superheroapi.com/api/4394190690700966';
-// axios.defaults.headers.common['Authorization'] = 'hulaanmo';
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <Router>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Router>
+  </Provider>,
   document.getElementById('root')
 );
 

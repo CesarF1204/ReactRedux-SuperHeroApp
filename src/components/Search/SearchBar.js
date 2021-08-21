@@ -20,12 +20,12 @@ const SearchBar = (props) => {
     return (
         <div>
             <nav>
-                <h1><Link className="logo" to="#">SuperHeroApp</Link></h1>
+                <h1><Link className="logo" to="/superhero/home">SuperHeroApp</Link></h1>
                 <div className="search">
                     <input type="text" value={state.newSearch} onChange={inputNewTaskHandler} placeholder="Search..."></input>
                     <button onClick={() => props.onSearchSuperHero(state.newSearch)}>Search</button>
                 </div>
-                <h1>Favourites</h1>
+                <h1><Link to="/superhero/selected">Favorites</Link></h1>
             </nav>
         </div>
     );

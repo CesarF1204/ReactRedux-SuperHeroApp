@@ -1,54 +1,50 @@
-import axios from 'axios';
-import { useState } from 'react';
-import SuperHero from './SuperHero'
+import SuperHero from './SuperHero';
 import SearchBar from '../Search/SearchBar';
-// import { Link } from 'react-router-dom';
-import '../css/SuperHeroApp.css'
+import { Redirect, Route, Switch } from 'react-router-dom';
+import '../css/SuperHeroApp.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSuperHero, addToFavorites } from '../../redux/reducers/superhero-reducer';
 
 const SuperHeroApp = (props) => {
-    const [state, setState] = useState({
-        superhero: [],
-        selected: [],
-    });
+
+    const superHeroState = useSelector(state => state.superheroapp.superhero);
+    const selectedHeroState = useSelector(state => state.superheroapp.selected);
+    const dispatch = useDispatch();
 
     const searchSuperHeroHandler = (hero) => {
-        setState({ ...state });
-        let superhero = []
-        axios.get(`/search/${hero}`)
-            .then(res => {
-                superhero = res.data.results;
-                    setState({
-                    ...state,
-                    superhero,
-                });
-            })
-            .catch(err => { 
-                alert(`Name not found. Please try again.`);
-                setState({ ...state });
-            });  
+        dispatch(getSuperHero(hero));
     }
 
-    const selectedHeroHandler = (e) => {
-        // console.log(e.target.id)
-        // axios.post(`/search`, {superhero: [...state.selected, name]} )
-        //     .then(res =>{
-        //         console.log(res.data)
-        //         setState({ ...state, selected: [...state.selected, res.data.results]});
-        //     })
-        alert("selected id: "+ e.target.id)
+    const selectedHeroHandler = (hero) => {
+        dispatch(addToFavorites(hero));
     }
     
     let superhero = [];
-    if (state.superhero.length > 0) {
-        superhero = state.superhero.map((hero) => (
-            <SuperHero key={hero.id} hero={hero} selectedHero={selectedHeroHandler} />
+        if(superHeroState.length > 0) {
+            superhero = superHeroState.map((hero) => (
+                <SuperHero key={hero.id} hero={hero} superhero={superhero} selectedHero={() => selectedHeroHandler(hero.id)} />
         ));
     }
 
+    let selected = [];
+        if(selectedHeroState.length > 0) {
+            selected = selectedHeroState.map((hero) => (
+                <SuperHero key={hero.id} hero={hero} />
+        ));
+    }
+    
     return(
         <div>
-            <SearchBar onSearchSuperHero={searchSuperHeroHandler}/>
-            {superhero}
+            <Switch>
+                <Route path="/superhero/home">
+                        <SearchBar onSearchSuperHero={searchSuperHeroHandler}/>
+                        {superhero}
+                </Route>
+                <Route path="/superhero/selected">
+                    {selected}
+                </Route>
+                <Redirect to="/superhero/home" />
+            </Switch>
         </div>
     )
 }

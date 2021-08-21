@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import '../css/SuperHero.css'
+import '../css/SuperHero.css';
 
 const completedEqual = (prevProps, nextProps) => {
     return prevProps.completed === nextProps.completed
@@ -7,7 +7,7 @@ const completedEqual = (prevProps, nextProps) => {
 
 const SuperHero = memo((props) => {
 
-    const {id, name, image, appearance, powerstats, biography} = props.hero;
+    const {name, image, appearance, powerstats, biography} = props.hero;
 
     return (
         <div className="flip-card">
@@ -96,13 +96,12 @@ const SuperHero = memo((props) => {
                             </tr>
                         </tbody>
                     </table>
-                    <button id={id} onClick={props.selectedHero}>Add to Favourites</button>
+                    {props.superhero ? 
+                    <button onClick={() => props.selectedHero(name)}>Add to Favorites</button> :
+                    null
+                    }
                 </div>
             </div>
-            {/* <div>
-                <button id={id} onClick={props.heroDetails}>Add to Favourites</button>
-            </div> */}
-            
         </div>
     );
 
