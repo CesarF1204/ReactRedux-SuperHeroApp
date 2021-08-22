@@ -3,7 +3,7 @@ import SearchBar from '../Search/SearchBar';
 import { Redirect, Route, Link } from 'react-router-dom';
 import '../css/SuperHeroApp.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSuperHero, addToFavorites, removeFavorites } from '../../redux/reducers/superhero-reducer';
+import { getSuperHero, addToFavorites, removeFavorites, clearSelectedSuperHero } from '../../redux/reducers/superhero-reducer';
 
 const SuperHeroApp = (props) => {
 
@@ -21,6 +21,9 @@ const SuperHeroApp = (props) => {
 
     const removeSelectedHeroHandler = (id) => {
         dispatch(removeFavorites(id));
+    }
+    const clearAllSelectedHeroHandler = (id) => {
+        dispatch(clearSelectedSuperHero(id));
     }
     
     let superhero = [];
@@ -45,6 +48,7 @@ const SuperHeroApp = (props) => {
                 </Route>
                 <Route path="/superhero/selected">
                     <h1><Link className="link" to="/superhero/home">Go Back To Home Page</Link></h1>
+                    <button className="clear-btn" onClick={clearAllSelectedHeroHandler} >Clear All</button><br/>
                     {selected}
                 </Route>
                 <Redirect to="/superhero/home" />

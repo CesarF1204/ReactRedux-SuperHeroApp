@@ -16,6 +16,11 @@ export const removeFavorites = new createAsyncThunk('superhero/selected/deleted'
     return response.data;
 });
 
+export const clearSelectedSuperHero = new createAsyncThunk('superhero/selected/cleared', async(id) => {
+    const response = await axios.post(`/${id}`);
+    return response.data;
+});
+
 export const superHeroSlice = createSlice({
     name: 'superheroapp',
     initialState: {
@@ -42,6 +47,12 @@ export const superHeroSlice = createSlice({
         },
         [removeFavorites.rejected]: (state, action) => {
             alert('Removing selected superhero error occured.');
+        },
+        [clearSelectedSuperHero.fulfilled]: (state, action) => {
+            state.selected = [];
+        },
+        [clearSelectedSuperHero.rejected]: (state, action) => {
+            alert('Clearing all selected superhero error occured.');
         },
     }
 });

@@ -58,7 +58,7 @@ input[type='text']:focus {
     background-color: white;
     color: black;
 }
-.search-btn, .add-to-favorites, .remove-to-favorites {
+.search-btn, .add-to-favorites, .remove-to-favorites, .clear-btn {
     border: 1px solid black;
     margin-left: 5px;
     padding: 8px 20px;
@@ -68,10 +68,13 @@ input[type='text']:focus {
     cursor: pointer;
     border-radius: 5px;
 }
-.search-btn:hover, .add-to-favorites:hover, .remove-to-favorites:hover {
+.search-btn:hover, .add-to-favorites:hover, .remove-to-favorites:hover, .clear-btn:hover {
     transform: scale(1.05);
     transition: 0.3s ease;
 }
 .remove-to-favorites {
     background-color: red;
+}
+.clear-btn {
+    background-color: gray;
 }
