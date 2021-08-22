@@ -27,21 +27,21 @@ export const superHeroSlice = createSlice({
             state.superhero = action.payload.results;
         },
         [getSuperHero.rejected]: (state, action) => {
-        alert('No results found.');
+            alert('No results found.');
         },
         [addToFavorites.fulfilled]: (state, action) => {
             state.selected.push(action.payload);
             alert(`Added ${action.payload.name} to favorites!`)
         },
         [addToFavorites.rejected]: (state, action) => {
-        alert('An error has occured. Please try again.');
+            alert('An error has occured. Please try again.');
         },
         [removeFavorites.fulfilled]: (state, action) => {
             let selectedHeroIndex = state.selected.findIndex(hero => hero.id === action.payload.id);
             state.selected.splice(selectedHeroIndex, 1);
         },
         [removeFavorites.rejected]: (state, action) => {
-        alert('Removing selected superhero error occured.');
+            alert('Removing selected superhero error occured.');
         },
     }
 });

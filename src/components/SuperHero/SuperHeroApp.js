@@ -15,8 +15,8 @@ const SuperHeroApp = (props) => {
         dispatch(getSuperHero(hero));
     }
 
-    const selectedHeroHandler = (hero) => {
-        dispatch(addToFavorites(hero));
+    const selectedHeroHandler = (id) => {
+        dispatch(addToFavorites(id));
     }
 
     const removeSelectedHeroHandler = (id) => {
