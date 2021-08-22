@@ -1,6 +1,6 @@
 import SuperHero from './SuperHero';
 import SearchBar from '../Search/SearchBar';
-import { Redirect, Route, Switch, Link } from 'react-router-dom';
+import { Redirect, Route, Link } from 'react-router-dom';
 import '../css/SuperHeroApp.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSuperHero, addToFavorites, removeFavorites } from '../../redux/reducers/superhero-reducer';

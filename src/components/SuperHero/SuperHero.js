@@ -7,7 +7,7 @@ const completedEqual = (prevProps, nextProps) => {
 
 const SuperHero = memo((props) => {
 
-    const {id, name, image, appearance, powerstats, biography} = props.hero;
+    const {name, image, appearance, powerstats, biography} = props.hero;
 
     return (
         <div className="flip-card">
