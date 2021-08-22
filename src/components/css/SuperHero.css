@@ -58,7 +58,7 @@ input[type='text']:focus {
     background-color: white;
     color: black;
 }
-button {
+.search-btn, .add-to-favorites, .remove-to-favorites {
     border: 1px solid black;
     margin-left: 5px;
     padding: 8px 20px;
@@ -68,7 +68,10 @@ button {
     cursor: pointer;
     border-radius: 5px;
 }
-button:hover {
+.search-btn:hover, .add-to-favorites:hover, .remove-to-favorites:hover {
     transform: scale(1.05);
     transition: 0.3s ease;
+}
+.remove-to-favorites {
+    background-color: red;
 }

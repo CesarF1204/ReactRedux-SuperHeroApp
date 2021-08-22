@@ -1,9 +1,9 @@
 import SuperHero from './SuperHero';
 import SearchBar from '../Search/SearchBar';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch, Link } from 'react-router-dom';
 import '../css/SuperHeroApp.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSuperHero, addToFavorites } from '../../redux/reducers/superhero-reducer';
+import { getSuperHero, addToFavorites, removeFavorites } from '../../redux/reducers/superhero-reducer';
 
 const SuperHeroApp = (props) => {
 
@@ -18,33 +18,36 @@ const SuperHeroApp = (props) => {
     const selectedHeroHandler = (hero) => {
         dispatch(addToFavorites(hero));
     }
+
+    const removeSelectedHeroHandler = (id) => {
+        dispatch(removeFavorites(id));
+    }
     
     let superhero = [];
         if(superHeroState.length > 0) {
             superhero = superHeroState.map((hero) => (
-                <SuperHero key={hero.id} hero={hero} superhero={superhero} selectedHero={() => selectedHeroHandler(hero.id)} />
+                <SuperHero key={hero.id} hero={hero} selectedHero={() => selectedHeroHandler(hero.id)} />
         ));
     }
 
     let selected = [];
         if(selectedHeroState.length > 0) {
             selected = selectedHeroState.map((hero) => (
-                <SuperHero key={hero.id} hero={hero} />
+                <SuperHero key={hero.id} hero={hero} selected={selected} removeSelectedHero={() => removeSelectedHeroHandler(hero.id)}/>
         ));
     }
     
     return(
         <div>
-            <Switch>
                 <Route path="/superhero/home">
-                        <SearchBar onSearchSuperHero={searchSuperHeroHandler}/>
-                        {superhero}
+                    <SearchBar onSearchSuperHero={searchSuperHeroHandler}/>
+                    {superhero}
                 </Route>
                 <Route path="/superhero/selected">
+                    <h1><Link className="link" to="/superhero/home">Go Back To Home Page</Link></h1>
                     {selected}
                 </Route>
                 <Redirect to="/superhero/home" />
-            </Switch>
         </div>
     )
 }

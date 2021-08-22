@@ -7,7 +7,7 @@ const completedEqual = (prevProps, nextProps) => {
 
 const SuperHero = memo((props) => {
 
-    const {name, image, appearance, powerstats, biography} = props.hero;
+    const {id, name, image, appearance, powerstats, biography} = props.hero;
 
     return (
         <div className="flip-card">
@@ -96,9 +96,9 @@ const SuperHero = memo((props) => {
                             </tr>
                         </tbody>
                     </table>
-                    {props.superhero ? 
-                    <button onClick={() => props.selectedHero(name)}>Add to Favorites</button> :
-                    null
+                    {props.selected ? 
+                    <button className="remove-to-favorites" onClick={props.removeSelectedHero}>Remove Selected</button> :
+                    <button className="add-to-favorites" onClick={props.selectedHero}>Add to Favorites</button>
                     }
                 </div>
             </div>
