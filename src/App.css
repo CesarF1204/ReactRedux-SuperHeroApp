@@ -5,8 +5,12 @@
   color: white;
 }
 body {
-  background-color: black;
   font-family: 'Exo';
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("bg.jpg");
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 table {
   display: inline-block;
