@@ -8,7 +8,7 @@ import axios from 'axios';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
-axios.defaults.baseURL = 'http://localhost:8000/';
+axios.defaults.baseURL = 'https://www.superheroapi.com/api/4394190690700966';
 
 ReactDOM.render(
   <Provider store={store}>
