@@ -12,7 +12,7 @@ export const addToFavorites = new createAsyncThunk('superhero/selected', async(i
 });
 
 export const removeFavorites = new createAsyncThunk('superhero/selected/deleted', async(id) => {
-    const response = await axios.get(`/${id}`);
+    const response = await axios.post(`/${id}`);
     return response.data;
 });
 
@@ -44,6 +44,7 @@ export const superHeroSlice = createSlice({
         [removeFavorites.fulfilled]: (state, action) => {
             let selectedHeroIndex = state.selected.findIndex(hero => hero.id === action.payload.id);
             state.selected.splice(selectedHeroIndex, 1);
+            // console.log(action.payload)
         },
         [removeFavorites.rejected]: (state, action) => {
             alert('Removing selected superhero error occured.');
